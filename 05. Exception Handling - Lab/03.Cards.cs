@@ -26,7 +26,6 @@ foreach (string card in allCards)
 
 Console.WriteLine(string.Join(" ", cards));
 
-
 class Card
 {
     private string cardFace;
