@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace EDriveRent.Repositories
 {
-    internal class RouteRepository : IRepository<IRoute>
+    public class RouteRepository : IRepository<IRoute>
     {
         private List<IRoute> routes;
 
