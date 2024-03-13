@@ -10,7 +10,12 @@ namespace EDriveRent.Repositories
 {
     public class RouteRepository : IRepository<IRoute>
     {
-        private List<IRoute> routes;
+        private readonly List<IRoute> routes;
+
+        public RouteRepository()
+        {
+            routes = new List<IRoute>();
+        }
 
         public void AddModel(IRoute model)
         {
@@ -28,7 +33,7 @@ namespace EDriveRent.Repositories
             return null;
         }
 
-        public IReadOnlyCollection<IRoute> GetAll() => routes.AsReadOnly();
+        public IReadOnlyCollection<IRoute> GetAll() => routes;
 
         public bool RemoveById(string identifier)
         {
