@@ -10,7 +10,12 @@ namespace EDriveRent.Repositories
 {
     public class VehicleRepository : IRepository<IVehicle>
     {
-        private List<IVehicle> vehicles;
+        private readonly List<IVehicle> vehicles;
+
+        public VehicleRepository()
+        {
+            vehicles = new List<IVehicle>();
+        }
 
         public void AddModel(IVehicle model)
         {
@@ -27,7 +32,7 @@ namespace EDriveRent.Repositories
             return null;
         }
 
-        public IReadOnlyCollection<IVehicle> GetAll() => vehicles.AsReadOnly();
+        public IReadOnlyCollection<IVehicle> GetAll() => vehicles;
 
         public bool RemoveById(string identifier)
         {
