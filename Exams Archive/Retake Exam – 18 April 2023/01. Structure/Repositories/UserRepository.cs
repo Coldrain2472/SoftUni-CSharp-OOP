@@ -10,7 +10,12 @@ namespace EDriveRent.Repositories
 {
     public class UserRepository : IRepository<IUser>
     {
-        private List<IUser> users;
+        private readonly List<IUser> users;
+
+        public UserRepository()
+        {
+            users = new List<IUser>();
+        }
 
         public void AddModel(IUser model)
         {
@@ -28,7 +33,7 @@ namespace EDriveRent.Repositories
             return null;
         }
 
-        public IReadOnlyCollection<IUser> GetAll() => users.AsReadOnly();
+        public IReadOnlyCollection<IUser> GetAll() => users;
 
         public bool RemoveById(string identifier)
         {
