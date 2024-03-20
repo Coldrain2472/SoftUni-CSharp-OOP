@@ -11,8 +11,8 @@ namespace VendingRetail.Tests
         private double coffeePrice = 1;
         private string tea = "tea";
         private double teaPrice = 0.5;
-        private string macciato = "macciato";
-        private double macciatoPrice = 1.2;
+        private string hotChocolate = "chocolate";
+        private double hotChocolatePrice = 1.5;
 
         [SetUp]
         public void Setup()
@@ -45,17 +45,17 @@ namespace VendingRetail.Tests
         }
 
         [Test]
-        public void FillWaterTankMethodShouldReturnCorrectMessageWhenFilledSuccessfully()
+        public void FillWaterTankShouldReturnTheCorrectMessageWhenTheWaterTankIsFull()
         {
-            string expectedResult = $"Water tank is filled with {waterCapacity}ml";
+            string expectedResult = $"Water tank is already full!";
+            coffeeMat.FillWaterTank();
             Assert.AreEqual(expectedResult, coffeeMat.FillWaterTank());
         }
 
         [Test]
-        public void FillWaterTankShouldReturnCorrectMessageWhenAlreadyFull()
+        public void FillWaterTankShouldReturnTheCorrectMessageWhenTheWaterTankIsFilled()
         {
-            string expectedResult = $"Water tank is already full!";
-            coffeeMat.FillWaterTank();
+            string expectedResult = $"Water tank is filled with {waterCapacity}ml";
             Assert.AreEqual(expectedResult, coffeeMat.FillWaterTank());
         }
 
@@ -71,7 +71,7 @@ namespace VendingRetail.Tests
         {
             coffeeMat.AddDrink(coffee, coffeePrice);
             coffeeMat.AddDrink(tea, teaPrice);
-            Assert.IsFalse(coffeeMat.AddDrink(macciato, macciatoPrice));
+            Assert.IsFalse(coffeeMat.AddDrink(hotChocolate, hotChocolatePrice));
         }
 
         [Test]
