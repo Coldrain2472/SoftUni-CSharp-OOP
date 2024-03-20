@@ -5,7 +5,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Transactions;
 
 namespace BankLoan.Models
 {
@@ -13,6 +12,7 @@ namespace BankLoan.Models
     {
         private string name;
         private string id;
+        private int interest;
         private double income;
 
         public Client(string name, string id, int interest, double income)
@@ -49,7 +49,7 @@ namespace BankLoan.Models
             }
         }
 
-        public int Interest { get; protected set; }
+        public int Interest { get => interest; protected set => interest = value; }
 
         public double Income
         {
@@ -63,6 +63,7 @@ namespace BankLoan.Models
                 income = value;
             }
         }
+
         public abstract void IncreaseInterest();
     }
 }

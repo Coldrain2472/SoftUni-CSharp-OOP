@@ -10,18 +10,18 @@ namespace BankLoan.Repositories
 {
     public class BankRepository : IRepository<IBank>
     {
-        private List<IBank> banks;
+        private readonly List<IBank> banks;
 
         public BankRepository()
-        { 
+        {
             banks = new List<IBank>();
         }
 
-        public IReadOnlyCollection<IBank> Models => banks.AsReadOnly();
+        public IReadOnlyCollection<IBank> Models => banks;
 
-        public void AddModel(IBank model)=>banks.Add(model);
+        public void AddModel(IBank model)=> banks.Add(model);
 
-        public IBank FirstModel(string name)=>banks.FirstOrDefault(x => x.Name == name);
+        public IBank FirstModel(string name) => banks.FirstOrDefault(b => b.Name == name);
 
         public bool RemoveModel(IBank model) => banks.Remove(model);
     }

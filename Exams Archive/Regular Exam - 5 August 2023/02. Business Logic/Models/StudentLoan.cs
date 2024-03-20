@@ -8,9 +8,11 @@ namespace BankLoan.Models
 {
     public class StudentLoan : Loan
     {
-        private const int defaultInterestRate = 1;
-        private const double defaultAmount = 10_000;
+        private const int interestRate = 1;
+        private const double amount = 10_000;
 
-        public StudentLoan() : base(defaultInterestRate, defaultAmount) { }
+        public StudentLoan() : base(interestRate, amount)
+        {
+        }
     }
 }

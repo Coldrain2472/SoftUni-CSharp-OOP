@@ -8,7 +8,11 @@ namespace BankLoan.Models
 {
     public class Adult : Client
     {
-        public Adult(string name, string id, double income) : base(name, id, 4, income) { }
+        private const int interest = 4;
+
+        public Adult(string name, string id, double income) : base(name, id, interest, income)
+        {
+        }
 
         public override void IncreaseInterest()
         {

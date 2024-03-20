@@ -11,10 +11,10 @@ namespace BankLoan.Models
     public abstract class Bank : IBank
     {
         private string name;
-        private List<ILoan> loans;
-        private List<IClient> clients;
+        private readonly List<ILoan> loans;
+        private readonly List<IClient> clients;
 
-        protected Bank(string name, int capacity)
+        public Bank(string name, int capacity)
         {
             Name = name;
             Capacity = capacity;
@@ -37,17 +37,20 @@ namespace BankLoan.Models
 
         public int Capacity { get; private set; }
 
-        public IReadOnlyCollection<ILoan> Loans => loans.AsReadOnly();
+        public IReadOnlyCollection<ILoan> Loans => loans;
 
-        public IReadOnlyCollection<IClient> Clients => clients.AsReadOnly();
+        public IReadOnlyCollection<IClient> Clients => clients;
 
         public void AddClient(IClient Client)
         {
-            if (clients.Count == Capacity)
+            if (Capacity > clients.Count)
             {
-                throw new ArgumentException("Not enough capacity for this client.");
+                clients.Add(Client);
             }
-            clients.Add(Client);
+            else
+            {
+                throw new ArgumentException(ExceptionMessages.NotEnoughCapacity);
+            }
         }
 
         public void AddLoan(ILoan loan) => loans.Add(loan);
@@ -77,4 +80,3 @@ namespace BankLoan.Models
         public double SumRates() => loans.Sum(l => l.InterestRate);
     }
 }
-

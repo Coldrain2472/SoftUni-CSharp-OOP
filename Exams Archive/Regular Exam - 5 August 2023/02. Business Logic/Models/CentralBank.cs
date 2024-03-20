@@ -8,9 +8,9 @@ namespace BankLoan.Models
 {
     public class CentralBank : Bank
     {
-        private const int defaultCapacity = 50;
+        private const int capacity = 50;
 
-        public CentralBank(string name) : base(name, defaultCapacity)
+        public CentralBank(string name) : base(name, capacity)
         {
         }
     }

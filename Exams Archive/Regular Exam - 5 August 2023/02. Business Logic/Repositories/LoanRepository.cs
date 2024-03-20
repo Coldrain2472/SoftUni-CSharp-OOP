@@ -10,19 +10,19 @@ namespace BankLoan.Repositories
 {
     public class LoanRepository : IRepository<ILoan>
     {
-        private List<ILoan> loans;
+        private readonly List<ILoan> loans;
 
         public LoanRepository()
         {
             loans = new List<ILoan>();
         }
 
-        public IReadOnlyCollection<ILoan> Models => loans.AsReadOnly();
+        public IReadOnlyCollection<ILoan> Models => loans;
 
-        public void AddModel(ILoan model) => loans.Add(model);
+        public void AddModel(ILoan model)=> loans.Add(model);
 
-        public ILoan FirstModel(string name)=>loans.FirstOrDefault(l=>l.GetType().Name == name);
+        public ILoan FirstModel(string name) => loans.FirstOrDefault(l => l.GetType().Name == name);
 
-        public bool RemoveModel(ILoan model)=>loans.Remove(model);
+        public bool RemoveModel(ILoan model) => loans.Remove(model);
     }
 }

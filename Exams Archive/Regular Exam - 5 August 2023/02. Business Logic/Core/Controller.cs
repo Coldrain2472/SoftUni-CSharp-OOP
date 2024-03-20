@@ -73,7 +73,6 @@ namespace BankLoan.Core
         public string AddLoan(string loanTypeName)
         {
             ILoan loan;
-
             if (loanTypeName == nameof(StudentLoan))
             {
                 loan = new StudentLoan();
