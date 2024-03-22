@@ -19,7 +19,7 @@ namespace BankLoan.Repositories
 
         public IReadOnlyCollection<IBank> Models => banks;
 
-        public void AddModel(IBank model)=> banks.Add(model);
+        public void AddModel(IBank model) => banks.Add(model);
 
         public IBank FirstModel(string name) => banks.FirstOrDefault(b => b.Name == name);
 

@@ -12,10 +12,9 @@ namespace BankLoan.Models
     {
         private string name;
         private string id;
-        private int interest;
         private double income;
 
-        public Client(string name, string id, int interest, double income)
+        protected Client(string name, string id, int interest, double income)
         {
             Name = name;
             Id = id;
@@ -23,9 +22,9 @@ namespace BankLoan.Models
             Income = income;
         }
 
-        public string Name
+        public string Name 
         {
-            get => name;
+            get => name; 
             private set
             {
                 if (string.IsNullOrWhiteSpace(value))
@@ -33,7 +32,7 @@ namespace BankLoan.Models
                     throw new ArgumentException(ExceptionMessages.ClientNameNullOrWhitespace);
                 }
                 name = value;
-            }
+            } 
         }
 
         public string Id
@@ -49,7 +48,7 @@ namespace BankLoan.Models
             }
         }
 
-        public int Interest { get => interest; protected set => interest = value; }
+        public int Interest { get; protected set; }
 
         public double Income
         {

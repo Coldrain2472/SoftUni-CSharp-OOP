@@ -43,14 +43,11 @@ namespace BankLoan.Models
 
         public void AddClient(IClient Client)
         {
-            if (Capacity > clients.Count)
-            {
-                clients.Add(Client);
-            }
-            else
+            if (Capacity <= clients.Count)
             {
                 throw new ArgumentException(ExceptionMessages.NotEnoughCapacity);
             }
+            clients.Add(Client);
         }
 
         public void AddLoan(ILoan loan) => loans.Add(loan);
@@ -58,20 +55,18 @@ namespace BankLoan.Models
         public string GetStatistics()
         {
             StringBuilder sb = new StringBuilder();
-
-            sb.AppendLine($"Name: {Name}, Type: {this.GetType().Name}");
-
-            if (clients.Count == 0)
+            sb.AppendLine($"Name: {Name}, Type: {GetType().Name}");
+            if (clients.Count > 0)
             {
-                sb.AppendLine($"Clients: none");
+                sb.AppendLine($"Clients: {string.Join(", ", clients)}");
             }
             else
             {
-                sb.AppendLine($"Clients: {string.Join(", ", clients.Select(c => c.Name))}");
+                sb.AppendLine("Clients: none");
             }
-
-            sb.AppendLine($"Loans: {loans.Count}, Sum of Rates: {loans.Sum(l => l.InterestRate)}");
-
+            
+            sb.AppendLine($"Loans: {loans.Count}, Sum of Rates: {SumRates()}");
+            
             return sb.ToString().TrimEnd();
         }
 

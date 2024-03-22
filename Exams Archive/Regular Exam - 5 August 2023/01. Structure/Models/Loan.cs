@@ -9,7 +9,7 @@ namespace BankLoan.Models
 {
     public abstract class Loan : ILoan
     {
-        protected Loan(int interestRate, double amount)
+        public Loan(int interestRate, double amount)
         {
             InterestRate = interestRate;
             Amount = amount;
