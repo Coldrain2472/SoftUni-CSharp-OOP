@@ -19,7 +19,7 @@ namespace RobotService.Repositories
 
         public void AddNew(ISupplement model) => supplements.Add(model);
 
-        public ISupplement FindByStandard(int interfaceStandard)=>supplements.FirstOrDefault(s=>s.InterfaceStandard==interfaceStandard);
+        public ISupplement FindByStandard(int interfaceStandard) => supplements.FirstOrDefault(s => s.InterfaceStandard == interfaceStandard);
 
         public IReadOnlyCollection<ISupplement> Models() => supplements;
 

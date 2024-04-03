@@ -19,7 +19,7 @@ namespace RobotService.Models
             Model = model;
             BatteryCapacity = batteryCapacity;
             ConvertionCapacityIndex = convertionCapacityIndex;
-            BatteryLevel = BatteryCapacity;
+            BatteryLevel = batteryCapacity;
             interfaceStandards = new List<int>();
         }
 
@@ -57,15 +57,13 @@ namespace RobotService.Models
 
         public void Eating(int minutes)
         {
-            int energyProduced = ConvertionCapacityIndex * minutes;
-
-            if (BatteryLevel + energyProduced >= BatteryCapacity)
+            if (BatteryLevel + this.ConvertionCapacityIndex * minutes <= BatteryCapacity)
             {
-                BatteryLevel = BatteryCapacity;
+                BatteryLevel += this.ConvertionCapacityIndex * minutes;
             }
             else
             {
-                BatteryLevel += energyProduced;
+                BatteryLevel = BatteryCapacity;
             }
         }
 
@@ -76,24 +74,23 @@ namespace RobotService.Models
                 BatteryLevel -= consumedEnergy;
                 return true;
             }
+
             return false;
         }
 
         public void InstallSupplement(ISupplement supplement)
         {
             interfaceStandards.Add(supplement.InterfaceStandard);
-            batteryCapacity -= supplement.BatteryUsage;
+            BatteryCapacity -= supplement.BatteryUsage;
             BatteryLevel -= supplement.BatteryUsage;
         }
 
         public override string ToString()
         {
             StringBuilder sb = new StringBuilder();
-
             sb.AppendLine($"{this.GetType().Name} {Model}:");
             sb.AppendLine($"--Maximum battery capacity: {BatteryCapacity}");
             sb.AppendLine($"--Current battery level: {BatteryLevel}");
-
             if (interfaceStandards.Count > 0)
             {
                 sb.AppendLine($"--Supplements installed: {string.Join(" ", interfaceStandards)}");

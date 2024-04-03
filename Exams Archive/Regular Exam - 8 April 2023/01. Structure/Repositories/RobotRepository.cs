@@ -19,10 +19,10 @@ namespace RobotService.Repositories
 
         public void AddNew(IRobot model) => robots.Add(model);
 
-        public IRobot FindByStandard(int interfaceStandard) => robots.FirstOrDefault(r => r.InterfaceStandards.Any(r => r == interfaceStandard));
+        public IRobot FindByStandard(int interfaceStandard)=>robots.FirstOrDefault(r=>r.InterfaceStandards.Contains(interfaceStandard));
 
         public IReadOnlyCollection<IRobot> Models() => robots;
 
-        public bool RemoveByName(string typeName) => robots.Remove(robots.FirstOrDefault(r => r.GetType().Name == typeName));
+        public bool RemoveByName(string typeName)=>robots.Remove(robots.FirstOrDefault(r=>r.GetType().Name==typeName));
     }
 }
